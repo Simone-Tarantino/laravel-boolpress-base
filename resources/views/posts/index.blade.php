@@ -14,6 +14,9 @@
                 <h4>{{$post->localization}}</h4>
             </li>
             <li>
+                <h5>Creato il: {{$post->created_at}}</h5>
+            </li>
+            <li>
                 <div class="content">
                     <p>{{$post->content}}</p>
                 </div>

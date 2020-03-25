@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 
+use function GuzzleHttp\Promise\all;
+
 class PostController extends Controller
 {
     /**
@@ -25,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -36,7 +38,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string',
+            'author' => 'required|string',
+            'content' => 'required|string',
+            'localization' => 'nullable|string'
+        ]);
+
+        $data = $request->all();
+        $newPost = New Post;
+        $newPost->fill($data);
+        $save = $newPost->save();
+
+        if ($save) {
+            return redirect()->route('posts.index');
+        }
     }
 
     /**

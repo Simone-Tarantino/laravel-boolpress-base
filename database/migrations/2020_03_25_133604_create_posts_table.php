@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->longText('content');
-            $table->string('localization', 100);
+            $table->string('localization', 100)->nullable();
             $table->timestamps();
         });
     }

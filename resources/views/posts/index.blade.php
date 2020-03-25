@@ -22,7 +22,17 @@
                 </div>
             </li>
             <li>
-                <a href="{{route('posts.show', $post)}}'">Mostra singolo post</a>
+                <a href="{{route('posts.show', $post)}}'"><button>Mostra post</button></a>
+            </li>
+            <li>
+                <a href="{{route('posts.edit', $post)}}"><button>Modifica post</button></a>
+            </li>
+            <li>
+                <form action="{{route('posts.destroy', $post)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Elimina post</button>
+                </form>
             </li>
         </ul>
     </div>

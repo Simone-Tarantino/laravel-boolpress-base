@@ -1,8 +1,6 @@
 @extends('layouts.layout')
 @section('main')
-<h1>Tutti i posts</h1>
-    @foreach ($posts as $post)
-    <div class="single-post">
+    <div class="show-post">
         <ul>
             <li>
                 <h2>{{$post->title}}</h2>
@@ -21,11 +19,6 @@
                     <p>{{$post->content}}</p>
                 </div>
             </li>
-            <li>
-                <a href="{{route('posts.show', $post)}}'">Mostra singolo post</a>
-            </li>
         </ul>
     </div>
-    <hr>
-    @endforeach
 @endsection

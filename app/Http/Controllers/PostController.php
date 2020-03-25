@@ -51,7 +51,7 @@ class PostController extends Controller
         $save = $newPost->save();
 
         if ($save) {
-            return redirect()->route('posts.index');
+            return redirect()->route('posts.show', $newPost);
         }
     }
 
@@ -61,9 +61,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        if (empty($post)) {
+            abort('404');
+        }
+        
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -72,9 +76,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        if (empty($post)) {
+            abort('404');
+        }
+        
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -84,9 +92,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        $post->update($data);
+
+        return redirect()->route('posts.show', $post);
     }
 
     /**

@@ -8,9 +8,6 @@
                 <h2>{{$post->title}}</h2>
             </li>
             <li>
-                <h3>{{$post->author}}</h3>
-            </li>
-            <li>
                 <h4>{{$post->localization}}</h4>
             </li>
             <li>
